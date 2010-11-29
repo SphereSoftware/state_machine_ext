@@ -1,14 +1,32 @@
+$: << File.expand_path("../")
 require 'rubygems'
 require 'state_machine'
-
+require 'lib/group'
 module ExStateMachine
 
   def self.included(base)
     base.class_eval do
+      
+      def group(name,&block)
+        @groups = [] if groups.nil?
+        group = Group.new(name,self)
+        group.instance_eval(&block) if block
+        @groups << group
+      end
+      
+      attr_accessor :groups
       alias_method :define_event_helpers_original, :define_event_helpers
 
       def define_event_helpers
         define_event_helpers_original
+
+        define_instance_method(:group) do |machine,object,args|
+          group = nil
+          @groups.each do |item|
+            group = item if args == item.name
+          end
+          group
+        end
 
         next_transitions = []
         request_state = nil
