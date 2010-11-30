@@ -11,9 +11,14 @@ module ExStateMachine
     attr_accessor :name
     def state(*args)
       args.each do |arg|
+        is_include = false
         @machine.states.each do |state|
-          @group_states << state if state.name == arg
+          if state.name == arg
+            @group_states << state
+            is_include = true
+          end
         end
+        raise "There is no such state in this state machine #{arg}" unless is_include
       end
     end
 
