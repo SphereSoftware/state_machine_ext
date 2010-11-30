@@ -20,13 +20,22 @@ module ExStateMachine
       def define_event_helpers
         define_event_helpers_original
 
-        define_instance_method(:group) do |machine,object,request_state|
+        define_instance_method(:group) do |machine,object,request_group|
           group = nil
           @groups.each do |item|
-            group = item if request_state == item.name
+            group = item if request_group == item.name
           end
           
           group
+        end
+
+        define_instance_method(:group?) do |machine,object,request_state|
+          res = []
+          @groups.each do |group|
+            res << group.name if group.include?(request_state.to_sym)
+          end
+          
+          res
         end
 
         next_transitions = []
