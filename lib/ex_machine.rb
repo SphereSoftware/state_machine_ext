@@ -27,7 +27,7 @@ module ExStateMachine
           group
         end
 
-        define_instance_method(:group?) do |machine,object,request_state|
+        define_instance_method(:find_group) do |machine,object,request_state|
           res = []
           @groups.each do |group|
             res << group.name if group.include?(request_state.to_sym)
