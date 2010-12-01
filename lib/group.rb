@@ -18,7 +18,7 @@ module ExStateMachine
             is_include = true
           end
         end
-        raise "There is no such state in this state machine #{arg}" unless is_include
+        raise "There is no such state as #{arg} in this state machine" unless is_include
       end
     end
 

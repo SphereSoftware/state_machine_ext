@@ -8,7 +8,7 @@ module ExStateMachine
     base.class_eval do
       
       def group(name,&block)
-        @groups = [] if groups.nil?
+        @groups = [] if @groups.nil?
         group = Group.new(name,self)
         group.instance_eval(&block) if block
         @groups << group
@@ -22,9 +22,7 @@ module ExStateMachine
 
         define_instance_method(:group) do |machine,object,request_group|
           group = nil
-          @groups.each do |item|
-            group = item if request_group == item.name
-          end
+          @groups.each {|item| group = item if request_group == item.name }
           
           group
         end
