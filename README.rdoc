@@ -46,8 +46,7 @@ Using of this class:
 == Credits
 
 === Team's line-up
-* Mykhaylo Sorochan, Valeriy Prokopchuk - Project Managers
-* Valeriy Sizov, Dmitriy Landberg - Software Developers
-* Nataliya Shatokhina - Tester
+* Mykhaylo Sorochan - Project Manager
+* Dmitriy Landberg - Software Developers
 
 Copyright (c) 2010 {Sphere Consulting Inc.}[http://www.sphereinc.com], released under the MIT license (see LICENSE).
