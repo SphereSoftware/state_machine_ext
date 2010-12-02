@@ -1,4 +1,4 @@
-$: << File.expand_path("../")
+$:.unshift(File.expand_path(File.dirname(__FILE__) + "/../"))
 require 'rubygems'
 require 'state_machine'
 require 'lib/group'
