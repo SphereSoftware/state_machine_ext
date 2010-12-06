@@ -51,8 +51,8 @@ module ExStateMachine
               next_transition = object.state_all_transitions(transition.to_name)
 
               next_transitions << next_transition unless next_transition.empty?
-              next_transitions << transition
             end
+            next_transitions << transition            
           end
 
           res = []
