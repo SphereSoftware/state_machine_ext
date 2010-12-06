@@ -37,22 +37,23 @@ module ExStateMachine
         end
 
         next_transitions = []
-        request_state = nil
+        request_state = []
         define_instance_method(attribute(:all_transitions)) do |machine, object, *args|
-          if request_state.nil?
-            request_state = args.empty? ? object.state_name : args.first
-          end
-          *args = {:from => args[0]} if !(args.empty?)
+          state = args.empty? ? object.state_name : args.first
+          request_state << state
+
+          *args = {:from => args.first} if !(args.empty?)
       
           transitions = machine.events.transitions_for(object, *args)
 
           transitions.each do |transition|
-            unless transition.to_name == request_state
+            unless request_state.include?(transition.to_name)
               next_transition = object.state_all_transitions(transition.to_name)
 
               next_transitions << next_transition unless next_transition.empty?
             end
-            next_transitions << transition            
+            next_transitions << transition
+            
           end
 
           res = []
