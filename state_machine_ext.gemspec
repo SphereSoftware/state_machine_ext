@@ -1,5 +1,5 @@
 Gem::Specification.new do |spec|
-  spec.name = "state_machine_extensions"
+  spec.name = "state_machine_ext"
   spec.version = '0.7.0'
   spec.platform = Gem::Platform::RUBY
   spec.summary = "Extensions for state machine gem"

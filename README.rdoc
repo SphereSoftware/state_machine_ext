@@ -1,8 +1,8 @@
 == State_machine_extensions
-state_machine_extensions is a extension of state_machine gem [https://github.com/pluginaweek/state_machine] library which allows to create state machines for any Ruby class.
+state_machine_ext is a extension of state_machine gem [https://github.com/pluginaweek/state_machine] library which allows to create state machines for any Ruby class.
 
 == Install
-  gem install state_machine_extensions
+  gem install state_machine_ext
 
 == Usage
 Below is an example of the features offered by this plugin:
@@ -47,6 +47,6 @@ Using of this class:
 
 === Team's line-up
 * Mykhaylo Sorochan - Project Manager
-* Dmitriy Landberg - Software Developers
+* Dmitriy Landberg - Software Developer
 
 Copyright (c) 2010 {Sphere Consulting Inc.}[http://www.sphereinc.com], released under the MIT license (see LICENSE).
