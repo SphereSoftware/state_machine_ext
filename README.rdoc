@@ -39,6 +39,7 @@ Using of this class:
 
   order = Order.new
   order.state_all_transitions                #=> [:sent, :paid, :in_basket, :selected] This function returns the array of all the states in which we can get from the current one.
+  order.state_all_transitions(:in_basket)    #=> [:sent, :paid]
   order.group(:not_paid).include?(:selected) #=> true
   order.find_group(:paid)                    #=> [:in_progress]
 
