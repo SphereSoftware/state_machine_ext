@@ -1,8 +1,8 @@
-module ExStateMachine
+module StateMachineExt
 
   class Group
 
-    def initialize(name,parent)
+    def initialize(name, parent)
       @machine = parent
       @name = name
       @group_states = []
