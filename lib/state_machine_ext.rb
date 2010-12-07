@@ -2,16 +2,20 @@ $:.unshift(File.expand_path(File.dirname(__FILE__) + "/../"))
 require 'rubygems'
 require 'state_machine'
 require 'lib/group'
+
 module StateMachineExt
 
+  class InvalidGroup < StandardError
+  end
+  
   def self.included(base)
     base.class_eval do
-      
+
       def group(name, &block)
         @groups = [] if @groups.nil?
-        group = Group.new(name, self)
+        group = @groups.detect {|item| item.name == name}
+        @groups << group = Group.new(name,self) if group.nil?
         group.instance_eval(&block) if block
-        @groups << group
       end
       
       attr_accessor :groups
@@ -20,30 +24,27 @@ module StateMachineExt
       def define_event_helpers
         define_event_helpers_original
 
-        #Define the method that return the group with the given name
+        # Define the method that returns the group with the given name
         define_instance_method(:group) do |machine, object, request_group|
           group = nil
           group = @groups.detect {|item| item.name == request_group}
           if group.nil?
-            raise "There is no group with such name as #{request_group}\
-in this state machine"
+            raise InvalidGroup, "\"#{request_group}\" is an unknown state machine group"
           end
           
           group
         end
 
-        #Define the method that return the state machine's group for the given
-        #state
+        # Define the method that returns the state machine's group for the given
+        # state
         define_instance_method(:find_group) do |machine, object, request_state|
-          res = []
-          @groups.each do |group|
+          @groups.inject([]) do |res,group|
             res << group.name if group.include?(request_state.to_sym)
+            res
           end
-          
-          res
         end
 
-        #Define the method that return all states which can be reached
+        #Define the method that returns all states which can be reached
         #from the given one
         define_instance_method(attribute(:all_transitions)) do |machine, object, *args|
           next_transitions = []
@@ -58,7 +59,6 @@ in this state machine"
 
           res.uniq
         end
-
       end
       
       def return_transition(next_transitions, request_state, machine, object, *args)
@@ -70,7 +70,9 @@ in this state machine"
 
         transitions.each do |transition|
           unless request_state.include?(transition.to_name)
-            next_transition = return_transition(next_transitions, request_state, machine, object, transition.to_name)
+            next_transition = 
+              return_transition(next_transitions, request_state,
+              machine, object, transition.to_name)
             next_transitions << next_transition unless next_transition.empty?
           end
           next_transitions << transition

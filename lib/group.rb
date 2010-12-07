@@ -1,6 +1,11 @@
 module StateMachineExt
 
+  class InvalidState < StandardError
+  end
+  
   class Group
+
+    attr_accessor :name
 
     def initialize(name, parent)
       @machine = parent
@@ -8,7 +13,6 @@ module StateMachineExt
       @group_states = []
     end
 
-    attr_accessor :name
     def state(*args)
       args.each do |arg|
         is_include = false
@@ -18,16 +22,15 @@ module StateMachineExt
             is_include = true
           end
         end
-        raise "There is no such state as #{arg} in this state machine" unless is_include
+        raise InvalidState, "\"#{arg}\" is an unknown state machine state" unless is_include
       end
     end
 
     def include?(state)
-      @group_states.each do |item|
-        return true if item.name == state
-      end
-      return false
+      group_state = @group_states.detect {|item| item.name == state}
+      group_state.nil? ? false : true
     end
+    
   end
 
 end
