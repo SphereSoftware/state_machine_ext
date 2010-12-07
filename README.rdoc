@@ -49,5 +49,6 @@ Using of this class:
 === Team's line-up
 * Mykhaylo Sorochan - Project Manager
 * Dmitriy Landberg - Software Developer
+* Nataliya Shatokhina - Tester
 
 Copyright (c) 2010 {Sphere Consulting Inc.}[http://www.sphereinc.com], released under the MIT license (see LICENSE).
