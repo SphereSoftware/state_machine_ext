@@ -1,8 +1,8 @@
 Gem::Specification.new do |spec|
   spec.name = "state_machine_ext"
-  spec.version = '0.7.0'
+  spec.version = '0.2.1'
   spec.platform = Gem::Platform::RUBY
-  spec.summary = "Extensions for state machine gem"
+  spec.summary = "Extensions for the state_machine gem"
   spec.files =  Dir["**/*"].reject!{ |fn| true if fn =~ /^test.rb|.\.git|\.gem/}
   spec.required_ruby_version = '>= 1.8.7'
   spec.required_rubygems_version = ">= 1.3.6"
@@ -11,6 +11,6 @@ Gem::Specification.new do |spec|
   spec.author = "Sphere Consulting Inc."
   spec.homepage = 'https://github.com/SphereConsultingInc/state_machine_ext/'
   spec.description = <<END_DESC
-  Extensions for state_machine gem
+  Extensions for the state_machine gem
 END_DESC
 end

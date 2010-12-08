@@ -52,12 +52,10 @@ module StateMachineExt
          
           transitions = return_transition(next_transitions, request_state, machine, object, *args)
 
-          res = []
-          transitions.each do |trans|
+          transitions.inject([]) do |res,trans|
             res << trans.to_name unless trans.is_a?(Array)
+            res.uniq
           end
-
-          res.uniq
         end
       end
       
