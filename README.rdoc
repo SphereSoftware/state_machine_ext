@@ -1,13 +1,15 @@
-== State_machine_extensions
-state_machine_ext is a extension of state_machine gem [https://github.com/pluginaweek/state_machine] library which allows to create state machines for any Ruby class.
+= state_machine extensions
+state_machine_ext is an extension of the state_machine[https://github.com/pluginaweek/state_machine] gem.
 
 == Install
   gem install state_machine_ext
 
 == Usage
-Below is an example of the features offered by this plugin:
+This gem adds state groups functionality and method to find all possible transitions from a state.
+Below is an example of the features offered:
 
-Class definition:
+=== Class definition
+
   class Order
     state_machine :initial => :not_selected do
       event :choose do
@@ -35,7 +37,7 @@ Class definition:
     end
   end
 
-Using of this class:
+=== Using extensions
 
   order = Order.new
   order.state_all_transitions                #=> [:sent, :paid, :in_basket, :selected] This function returns the array of all the states in which we can get from the current one.
@@ -46,9 +48,10 @@ Using of this class:
 
 == Credits
 
-=== Team's line-up
+=== Project Team
 * Mykhaylo Sorochan - Project Manager
 * Dmitriy Landberg - Software Developer
 * Nataliya Shatokhina - Tester
+* Sergey Mostovoy - Extension idea
 
 Copyright (c) 2010 {Sphere Consulting Inc.}[http://www.sphereinc.com], released under the MIT license (see LICENSE).
