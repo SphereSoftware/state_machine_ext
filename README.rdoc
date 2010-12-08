@@ -40,9 +40,13 @@ Below is an example of the features offered:
 === Using extensions
 
   order = Order.new
-  order.state_all_transitions                #=> [:sent, :paid, :in_basket, :selected] This function returns the array of all the states in which we can get from the current one.
+  # returns the array of all the states which we can reach from the current one
+  order.state_all_transitions                #=> [:sent, :paid, :in_basket, :selected]
+  # same for the particular state
   order.state_all_transitions(:in_basket)    #=> [:sent, :paid]
+  # check whether a group includes some state
   order.group(:not_paid).include?(:selected) #=> true
+  # find groups to which belongs a state
   order.find_group(:paid)                    #=> [:in_progress]
 
 
