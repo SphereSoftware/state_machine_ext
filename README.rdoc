@@ -53,9 +53,6 @@ Below is an example of the features offered:
 == Credits
 
 === Project Team
-* Mykhaylo Sorochan - Project Manager
-* Dmitriy Landberg - Software Developer
-* Nataliya Shatokhina - Tester
-* Sergey Mostovoy - Extension idea
+* Sphere Consulting Inc Development Team
 
 Copyright (c) 2010 {Sphere Consulting Inc.}[http://www.sphereinc.com], released under the MIT license (see LICENSE).
